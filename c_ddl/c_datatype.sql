@@ -23,7 +23,7 @@
     
     d) bigint (8byte: 64bit)
     : 약 -900경 ~ 약 900경
-    ex) 금융권, 천문학에서 주로 사용 / 각 테이브르이 식별 값
+    ex) 금융권, 천문학에서 주로 사용 / 각 테이블의 식별 값
 */
 create database if not exists `example`;
 use `example`;
@@ -72,7 +72,7 @@ insert into `person` values (128, 32768);
 	a) char(개수)
     : 고정 길이 문자형, 1 ~ 255 바이트
     : 길이가 항상 일정하기 때문에 검색 속도가 빠름
-    : 선언된 깅리 내에서 필요한 만큼만 데이터를 저장
+    : 선언된 길이 내에서 필요한 만큼만 데이터를 저장
     - 주소, 상품명, 국가코드(KOR, CHI, USA) 등
     
     ex) char(10)의 10자리 중에서 3자리만 사용하는 경우, 7자리가 비워진 상태로 메모리 낭비
@@ -97,7 +97,7 @@ insert into `person` values (128, 32768);
 		a) text 형식: 1 ~ 약 65000 바이트
 		   longtext 형식: 1 ~ 42억 바이트
            
-		b) block (binary long object): 이미지, 동영상 등의 데이터
+		b) blob (binary long object): 이미지, 동영상 등의 데이터
 			- 1 ~ 약 65000 바이트
             longblob: 1 ~ 약 42억 바이트
 */
@@ -105,10 +105,62 @@ insert into `person` values (128, 32768);
 create table `character` (
 	name varchar(100), -- 제품명(가변길이)
     category char(10), -- 카테고리(고정길이)
-    description text, -- 제품 설명(대용략 텍스트)
+    description text, -- 제품 설명(대용량 텍스트)
     image blob
 );
 
 insert into `character`
 values ('Laptop', '전자제품', '삼성 갤럭시 북4 노트북 프로', 'example.com');
-values ('Laptop', '전자제품', '삼성 갤럭시 북4 노트북 프로', 'example.com');
+
+/*
+	3. 실수형
+    : 소수점이 있는 숫자를 저장할 때 사용
+    - float, double, decimal
+    
+    a) float
+    : 총 7자리까지 표현
+    - 소수점 이하는 2자리까지 (정수 5자리)
+    ex) 시력, 가격 등
+    
+    b) double
+    : 총 10자리까지 표현
+    - 소수점 이하는 4자리까지 가능(정수 6자리)
+    - 구체적인 값을 표현할 수 있음
+    
+    c) decimal | numeric
+    : 고정 소수점 타입, 정밀한 소수점 계산에 필요
+    
+*/
+
+create table `products` (
+	# 실수형 데이터는 함수 형태로 사용 (호출)
+    # : 데이터 타입 (전체자리수, 소수점 이하 자리수)
+    price1 float(7, 2),
+    price2 double(10, 4),
+    price3 decimal(15, 2)
+);
+
+insert into `products` 
+value (12345.67, 123456.7890, 999999999999.99);
+
+/*
+	4. 논리형
+    : boolean 값을 저장하기 위한 데이터 타입
+    : 논리적으로 참(True)과 거짓(false) 값을 나타냄
+    
+    cf) 비워둘 경우 null(알 수 없음, 부재한 값)으로 인식
+    
+    cf) MYSQL에서는 Boolean타입이 존재하지만, 실제(내부적으로)로는 tinyint(1)로 처리
+		>> True는 1, False는 0으로 저장
+        
+	cf) Boolean 값에 대소문자 구분 x
+*/
+
+create table `employees` (
+	is_Senior Boolean
+); 
+
+insert into `employees`
+value (true);
+
+select * from `employees`;

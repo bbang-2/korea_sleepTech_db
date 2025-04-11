@@ -35,7 +35,7 @@ show databases;
 -- 4. sql 단축키
 # 파일 저장: ctrl + s
 # 한 줄 복사: ctrl + d
-# 한 줄 복사: ctrl + d
+# 한 줄 삭제: ctrl + l
 # 새로운 SQL 탭 생성: ctrl + t
 # SQL 정렬: ctrl + b
 

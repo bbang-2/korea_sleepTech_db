@@ -30,7 +30,7 @@ use example;
 
 create table students ( 
 	# 테이블 생성 시 DB명이 필수 x
-    # use 명령어를 통해 DB지정이 되어있는 경우 생략 간ㅇ
+    # use 명령어를 통해 DB지정이 되어있는 경우 생략 가능
     # >> 오류 방지를 위해 작성을 권장
 	student_id int primary key,
     name varchar(100) not null,
@@ -53,7 +53,7 @@ desc students;
 # Type: 각 컬럼의 데이터 타입
 # Null: Null(데이터 생략, 비워짐) 허용 여부
 # Key: 각 컬럼의 제약 사항
-# Defailt: 기본값 지정
+# Default: 기본값 지정
 # Extra: 제약 사항-추가옵션
 
 # --- 테이블 수정 ---

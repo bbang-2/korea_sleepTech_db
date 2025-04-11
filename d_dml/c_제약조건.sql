@@ -48,7 +48,7 @@ create table `contacts` (
 
 /*
 	6. default 제약 조건
-    : 테이블의 열에 값이 명시적으로 제동되지 않는 경우 사용되는 기본 값
+    : 테이블의 열에 값이 명시적으로 제공되지 않는 경우 사용되는 기본 값
     - 선택적 필드에 대해 데이터 입력을 단순화 - 데이터 무결성 유지
 */
 
@@ -81,4 +81,4 @@ create table `multiple` (
 insert into `multiple`
 values (11);
     
-
+drop database if exists `example`;
